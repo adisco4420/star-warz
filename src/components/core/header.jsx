@@ -1,6 +1,6 @@
 import React from 'react';
 const Header = () => {
-  return (<nav className="navbar navbar-expand-lg navbar-inverse bg-dark text-light">
+  return (<nav className="navbar navbar-expand-lg navbar-inverse bg-dark text-light mb-2">
     <a className="navbar-brand text-light" href="/">
       Star Warz
     </a>
