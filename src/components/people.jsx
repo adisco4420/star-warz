@@ -61,7 +61,6 @@ class People extends Component {
     const count = this.state.filteredList ? this.state.filteredList.length : 0;
     const { pageSize, currentPage } = this.state;
     const paginated = paginate(this.state.filteredList, currentPage, pageSize)
-    console.log(paginated);
     
     const genders = ["Male", "Female", "Robot"];
     return (
