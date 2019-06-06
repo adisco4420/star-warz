@@ -34,7 +34,7 @@ class StarShips extends Component {
         return (<div className="container">
             <div className="row m-3">
                 <div className="col-sm-4">
-                    <h3>StarShips</h3>
+                    <h3>Star Ships</h3>
                 </div>
                 <div className="col-sm-6  ml-auto">
                     <div className="row">
