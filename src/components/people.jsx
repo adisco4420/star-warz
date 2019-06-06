@@ -53,7 +53,6 @@ class People extends Component {
     console.log(value);
   };
   handelPageChange = page => {
-      console.log(page);
     this.setState({ currentPage: page });
   };
 

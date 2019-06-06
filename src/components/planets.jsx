@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { paginate } from '../utils/paginate';
+import Pagination from '../common/pagination';
 
 class Planets extends Component {
     state = {
         listOfPlanets: null,
         filteredList: null,
+        pageSize: 4,
+        currentPage: 1,
         detail: {}
     }
     componentDidMount() {
@@ -28,9 +32,16 @@ class Planets extends Component {
         const filtered = this.state.listOfPlanets.filter(val => val.name.toLowerCase().includes(value))
         this.setState({ filteredList: filtered })
     }
+    handelPageChange = page => {
+        this.setState({ currentPage: page });
+      };
+    
 
     render() {
         const detail = this.state.detail;
+        const count = this.state.filteredList ? this.state.filteredList.length : 0;
+        const { pageSize, currentPage } = this.state;
+        const paginated = paginate(this.state.filteredList, currentPage, pageSize)
         return (<div className="container">
             <div className="row m-3">
                 <div className="col-sm-4">
@@ -63,7 +74,7 @@ class Planets extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        this.state.filteredList.map((item, index) => {
+                                        paginated.map((item, index) => {
                                             return <tr key={index}>
 
                                                 <td>{item.name}</td>
@@ -74,11 +85,23 @@ class Planets extends Component {
                                         })
                                     }
                                     {
-                                        !this.state.filteredList.length && <tr>
+                                        !paginated.length && <tr>
                                             <td>No Data Found</td>
                                         </tr>
                                     }
                                 </tbody>
+                                <tfoot>
+                  <tr>
+                    <td colSpan="12">
+                      <Pagination
+                        itemCount={count}
+                        pageSize={pageSize}
+                        currentPage={currentPage}
+                        onPageChange={this.handelPageChange}
+                      />
+                    </td>
+                  </tr>
+                </tfoot>
                             </table>
 
                         </div>
