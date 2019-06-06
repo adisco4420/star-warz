@@ -8,9 +8,9 @@ class Planets extends Component {
         detail: {}
     }
     componentDidMount() {
-        this.fetchPeople()
+        this.fetchPlanets()
     }
-    async  fetchPeople() {
+    async  fetchPlanets() {
         try {
             const res = await axios.get('https://swapi.co/api/planets');
             this.setState({ listOfPlanets: res.data.results, filteredList: res.data.results })

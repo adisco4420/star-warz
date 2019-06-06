@@ -4,6 +4,7 @@ import Header from './components/core/header';
 import Slider from './components/core/slider';
 import People from './components/people';
 import Planets from './components/planets';
+import StarShips from './components/starship';
 
 
 function App() {
@@ -11,8 +12,11 @@ function App() {
     <div className="App">
      <Header />
      <Slider />
-     <People />
+    <section>
+    <People />
      <Planets />
+     <StarShips />
+    </section>
     </div>
   );
 }
