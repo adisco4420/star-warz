@@ -29,7 +29,6 @@ class Planets extends Component {
         this.setState({ filteredList: filtered })
     }
 
-
     render() {
         const detail = this.state.detail;
         return (<div className="container">

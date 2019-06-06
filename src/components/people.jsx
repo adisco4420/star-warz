@@ -13,21 +13,21 @@ class People extends Component {
     async  fetchPeople() {
         try {
             const res = await axios.get('https://swapi.co/api/people/');
-            this.setState({ listOfPeople: res.data.results, filteredList: res.data.results})
+            this.setState({ listOfPeople: res.data.results, filteredList: res.data.results })
         } catch (error) {
             console.log(error);
         }
     }
     viewDetail = (detail) => {
-        this.setState({detail})
+        this.setState({ detail })
     }
     getShortDate = (date) => new Date(date).toLocaleDateString();
-    parseGender = (gender) =>  gender === 'n/a' ? 'robot' : gender;
+    parseGender = (gender) => gender === 'n/a' ? 'robot' : gender;
     handleSearch = e => {
-        let {value } = e.target;
+        let { value } = e.target;
         value = value.toLowerCase();
-        const  filtered = this.state.listOfPeople.filter(val => val.name.toLowerCase().includes(value))
-        this.setState({filteredList: filtered})
+        const filtered = this.state.listOfPeople.filter(val => val.name.toLowerCase().includes(value))
+        this.setState({ filteredList: filtered })
     }
     handleFilter = e => {
         let { value } = e.target;
@@ -35,13 +35,13 @@ class People extends Component {
         let filtered;
         if (value === 'all-gender') {
             filtered = this.state.listOfPeople;
-        } else if(value === 'robot') {
+        } else if (value === 'robot') {
             filtered = this.state.listOfPeople.filter(val => val.gender === 'n/a');
         } else {
             filtered = this.state.listOfPeople.filter(val => val.gender === value);
         }
-        
-        this.setState({filteredList: filtered})
+
+        this.setState({ filteredList: filtered })
         console.log(value);
     }
 
@@ -99,8 +99,9 @@ class People extends Component {
                                         })
                                     }
                                     {
-                                        !this.state.filteredList.length && <td>No Data Found</td>
-                                    }
+                                        !this.state.filteredList.length && <tr>
+                                            <td>No Data Found</td>
+                                        </tr>}
                                 </tbody>
                             </table>
 
@@ -108,33 +109,33 @@ class People extends Component {
                 }
 
             </div>
-<div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">{detail.name}</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div className="modal-body">
-          <p><b>Height: </b>{detail.height}</p>
-          <p><b>Birth Year: </b>{detail.birth_year}</p>
-          <p><b>Eye Color: </b>{detail.eye_color}</p>
-          <p><b>Gender: </b>{detail.gender}</p>
-          <p><b>Hair Color: </b>{detail.hair_color}</p>
-          <p><b>Mass: </b>{detail.mass}</p>
-          <p><b>SKin Color: </b>{detail.skin_color}</p>
-          <p><b>Created Date: </b>{this.getShortDate(detail.created)}</p>
-          <p><b>Edited Date: </b>{this.getShortDate(detail.edited)}</p>
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              
-    </div>
-    </div>
-  </div>
-</div>
+            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">{detail.name}</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <p><b>Height: </b>{detail.height}</p>
+                            <p><b>Birth Year: </b>{detail.birth_year}</p>
+                            <p><b>Eye Color: </b>{detail.eye_color}</p>
+                            <p><b>Gender: </b>{detail.gender}</p>
+                            <p><b>Hair Color: </b>{detail.hair_color}</p>
+                            <p><b>Mass: </b>{detail.mass}</p>
+                            <p><b>SKin Color: </b>{detail.skin_color}</p>
+                            <p><b>Created Date: </b>{this.getShortDate(detail.created)}</p>
+                            <p><b>Edited Date: </b>{this.getShortDate(detail.edited)}</p>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>);
     }
 }
